@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import {
   callElevatorToFloor,
@@ -6,6 +6,8 @@ import {
   getInitialState,
   getBuildingInfo,
 } from "../services/elevatorService";
+
+import { Elevator } from "./elevator";
 
 interface Elv {
   id: string;
@@ -52,7 +54,25 @@ export class Elevators extends React.Component<{}, ElevatorsState> {
     this.setState({ elevators });
   };
 
+  handleElevatorCall = async (elv: number) => {
+    await callElevatorToFloor(elv);
+  };
+
   render() {
-    return <div>Hello</div>;
+    const { elevators, floors } = this.state;
+    return (
+      <React.Fragment>
+        <div className="elv-area">
+          {elevators.map((elv: Elv) => (
+            <Elevator
+              key={elv.id}
+              id={elv.id}
+              floor={elv.floor}
+              state={elv.state}
+            />
+          ))}
+        </div>
+      </React.Fragment>
+    );
   }
 }
