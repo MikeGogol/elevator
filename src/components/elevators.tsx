@@ -17,12 +17,12 @@ type Elv = {
   state: string;
 };
 
-type ElevatorsState = {
+type State = {
   elevators: Array<Elv>;
   floors: Array<Number>;
 };
 
-export class Elevators extends React.Component<{}, ElevatorsState> {
+export class Elevators extends React.Component<{}, State> {
   state = { elevators: [], floors: [] };
 
   async componentDidMount() {
