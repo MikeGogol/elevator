@@ -7,15 +7,15 @@ import {
   getBuildingInfo,
 } from "../services/elevatorService";
 
-import { Elevator } from "./elevator";
+import Elevator from "./elevator";
 import ControlPanel from "./controlPanel";
 import AppHeader from "./appHeader";
 
-interface Elv {
+type Elv = {
   id: string;
   floor: number;
   state: string;
-}
+};
 
 type ElevatorsState = {
   elevators: Array<Elv>;
@@ -32,7 +32,6 @@ export class Elevators extends React.Component<{}, ElevatorsState> {
     } = await getBuildingInfo();
     this.createFloors(floors);
     this.setState({ elevators });
-    console.log(this.state);
     source.onmessage = (event) => {
       const elevator = JSON.parse(event.data);
       const { id, floor, state } = elevator;
@@ -41,10 +40,7 @@ export class Elevators extends React.Component<{}, ElevatorsState> {
   }
 
   createFloors = (number: number) => {
-    let floors = [];
-    for (let i: number = 0; i < number; i++) {
-      floors.push(i);
-    }
+    const floors = Array.from(Array(number).keys());
     this.setState({ floors });
   };
 

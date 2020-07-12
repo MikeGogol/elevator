@@ -1,10 +1,10 @@
 import * as React from "react";
 
-interface ArrowDownProps {
+type Props = {
   state: string;
-}
+};
 
-const ArrowDown: React.SFC<ArrowDownProps> = ({ state }) => {
+export default function ArrowDown({ state }: Props) {
   const active: string = state === "down" ? "-active" : "";
   const triangleClass: string = "triangle-down" + active;
   return (
@@ -12,6 +12,4 @@ const ArrowDown: React.SFC<ArrowDownProps> = ({ state }) => {
       <div className={triangleClass}></div>
     </React.Fragment>
   );
-};
-
-export default ArrowDown;
+}

@@ -1,16 +1,14 @@
 import * as React from "react";
 
-interface ControlItemProps {
+interface Props {
   item: number;
-  onItemSelect: Function;
+  onItemSelect: (item: number) => void;
 }
 
-const ControlItem: React.SFC<ControlItemProps> = ({ item, onItemSelect }) => {
+export default function ControlItem({ item, onItemSelect }: Props) {
   return (
     <div className="con-item" onClick={() => onItemSelect(item)}>
       {item}
     </div>
   );
-};
-
-export default ControlItem;
+}

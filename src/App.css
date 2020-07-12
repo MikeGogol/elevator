@@ -91,6 +91,10 @@
   transition: width 2s;
 }
 
+.text-green {
+  color: #5ac37e;
+}
+
 html,
 body {
   background: #eee;

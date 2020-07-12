@@ -4,18 +4,20 @@ import ArrowDown from "./arrowDown";
 import ArrowUp from "./arrowUp";
 const Pulse = require("react-reveal/Pulse");
 
-interface ElevatorProps {
+type Props = {
   id: string;
   floor: number;
   state: string;
-}
+};
 
-export const Elevator: React.FC<ElevatorProps> = ({ id, floor, state }) => (
-  <div className="elv-item">
-    <ArrowUp state={state} />
-    <Pulse spy={floor}>
-      <h1>{floor}</h1>
-    </Pulse>
-    <ArrowDown state={state} />
-  </div>
-);
+export default function Elevator({ id, floor, state }: Props) {
+  return (
+    <div className="elv-item">
+      <ArrowUp state={state} />
+      <Pulse spy={floor}>
+        <h1>{floor}</h1>
+      </Pulse>
+      <ArrowDown state={state} />
+    </div>
+  );
+}

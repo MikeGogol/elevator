@@ -1,22 +1,17 @@
 import * as React from "react";
 import ControlItem from "./controlItem";
 
-interface ControlPanelProps {
-  items: Array<Number>;
-  onItemSelect: Function;
-}
+type Props = {
+  items: Array<number>;
+  onItemSelect: (item: number) => void;
+};
 
-const ControlPanel: React.SFC<ControlPanelProps> = ({
-  items,
-  onItemSelect,
-}) => {
+export default function ControlPanel({ items, onItemSelect }: Props) {
   return (
     <div className="con-area">
-      {items.map((item: any) => (
+      {items.map((item: number) => (
         <ControlItem key={item} item={item} onItemSelect={onItemSelect} />
       ))}
     </div>
   );
-};
-
-export default ControlPanel;
+}
