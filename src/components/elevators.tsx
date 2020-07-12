@@ -8,6 +8,7 @@ import {
 } from "../services/elevatorService";
 
 import { Elevator } from "./elevator";
+import ControlPanel from "./controlPanel";
 
 interface Elv {
   id: string;
@@ -72,6 +73,7 @@ export class Elevators extends React.Component<{}, ElevatorsState> {
             />
           ))}
         </div>
+        <ControlPanel items={floors} onItemSelect={this.handleElevatorCall} />
       </React.Fragment>
     );
   }
