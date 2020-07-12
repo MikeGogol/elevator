@@ -9,6 +9,7 @@ import {
 
 import { Elevator } from "./elevator";
 import ControlPanel from "./controlPanel";
+import AppHeader from "./appHeader";
 
 interface Elv {
   id: string;
@@ -63,6 +64,7 @@ export class Elevators extends React.Component<{}, ElevatorsState> {
     const { elevators, floors } = this.state;
     return (
       <React.Fragment>
+        <AppHeader />
         <div className="elv-area">
           {elevators.map((elv: Elv) => (
             <Elevator
