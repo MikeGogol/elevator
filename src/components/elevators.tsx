@@ -39,8 +39,8 @@ export class Elevators extends React.Component<{}, State> {
     };
   }
 
-  createFloors = (number: number) => {
-    const floors = Array.from(Array(number).keys());
+  createFloors = (length: number) => {
+    const floors = Array.from(Array(length).keys());
     this.setState({ floors });
   };
 
