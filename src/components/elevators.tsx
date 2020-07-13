@@ -4,65 +4,65 @@ import {
   callElevatorToFloor,
   source,
   getInitialState,
-  getBuildingInfo,
+  getFloorsNumber,
+  Elv,
 } from "../services/elevatorService";
 
 import Elevator from "./elevator";
 import ControlPanel from "./controlPanel";
 import AppHeader from "./appHeader";
 
-type Elv = {
-  id: string;
-  floor: number;
-  state: string;
-};
-
 type State = {
   elevators: Array<Elv>;
-  floors: Array<Number>;
+  floors: Array<number>;
 };
 
 export class Elevators extends React.Component<{}, State> {
-  state = { elevators: [], floors: [] };
+  public readonly state: Readonly<State> = { elevators: [], floors: [] };
 
   async componentDidMount() {
-    const { data: elevators } = await getInitialState();
-    const {
-      data: { floors },
-    } = await getBuildingInfo();
-    this.createFloors(floors);
-    this.setState({ elevators });
-    source.onmessage = (event) => {
-      const elevator = JSON.parse(event.data);
-      const { id, floor, state } = elevator;
-      this.handleSetFloor(id, floor, state);
+    const [
+      { data: elevators },
+      {
+        data: { floors: numOfFloors },
+      },
+    ] = await Promise.all([getInitialState(), getFloorsNumber()]);
+    this.setState({ elevators, floors: this.createFloors(numOfFloors) });
+    source.onmessage = (event: { data: string }) => {
+      const elevator: Elv = JSON.parse(event.data);
+      this.handleSetFloor(elevator);
     };
   }
 
+  handleElevatorCall = async (elv: number) => {
+    callElevatorToFloor(elv);
+  };
+
   createFloors = (length: number) => {
     const floors = Array.from(Array(length).keys());
-    this.setState({ floors });
+    return floors;
   };
 
-  handleSetFloor = (id: string, floor: number, state: string) => {
+  handleSetFloor = (elevator: Elv) => {
+    const { id, floor, state } = elevator;
     const { elevators } = this.state;
-    let elv: any = elevators.find((c: Elv) => c.id === id);
-    elv.floor = floor;
-    elv.state = state;
-    this.setState({ elevators });
-  };
-
-  handleElevatorCall = async (elv: number) => {
-    await callElevatorToFloor(elv);
+    const updatedElv: Elv = { ...elevator, floor, state };
+    const updatedElvs = elevators.map((elv) => {
+      if (elv.id === id) {
+        return updatedElv;
+      }
+      return elv;
+    });
+    this.setState({ elevators: updatedElvs });
   };
 
   render() {
     const { elevators, floors } = this.state;
     return (
-      <React.Fragment>
+      <>
         <AppHeader />
         <div className="elv-area">
-          {elevators.map((elv: Elv) => (
+          {elevators.map((elv) => (
             <Elevator
               key={elv.id}
               id={elv.id}
@@ -72,7 +72,7 @@ export class Elevators extends React.Component<{}, State> {
           ))}
         </div>
         <ControlPanel items={floors} onItemSelect={this.handleElevatorCall} />
-      </React.Fragment>
+      </>
     );
   }
 }

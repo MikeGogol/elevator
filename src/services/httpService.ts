@@ -1,8 +1,9 @@
 import axios from "axios";
 
-export const hostAdress = `http://localhost:3001`;
+export const baseURL = "http://localhost:3001";
+const axiosInstance = axios.create({ baseURL, timeout: 5000 });
 
-axios.interceptors.response.use(null, (error) => {
+axios.interceptors.response.use(undefined, (error) => {
   const expectedError =
     error.response &&
     error.response.status >= 400 &&
@@ -15,9 +16,4 @@ axios.interceptors.response.use(null, (error) => {
   return Promise.reject(error);
 });
 
-export default {
-  get: axios.get,
-  put: axios.put,
-  post: axios.post,
-  delete: axios.delete,
-};
+export default axiosInstance;

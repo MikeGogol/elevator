@@ -1,15 +1,18 @@
-import * as React from "react";
+import React from "react";
+import classnames from "classnames";
 
 type Props = {
   state: string;
 };
 
 export default function ArrowDown({ state }: Props) {
-  const active: string = state === "down" ? "-active" : "";
-  const triangleClass: string = "triangle-down" + active;
   return (
-    <React.Fragment>
-      <div className={triangleClass}></div>
-    </React.Fragment>
+    <>
+      <div
+        className={classnames("triangle-down", {
+          "triangle-down-active": state === "down",
+        })}
+      />
+    </>
   );
 }

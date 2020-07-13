@@ -1,8 +1,8 @@
-import * as React from "react";
+import React from "react";
 
 import ArrowDown from "./arrowDown";
 import ArrowUp from "./arrowUp";
-const Pulse = require("react-reveal/Pulse");
+import Pulse from "react-reveal/Pulse";
 
 type Props = {
   id: string;

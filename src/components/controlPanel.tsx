@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import ControlItem from "./controlItem";
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 export default function ControlPanel({ items, onItemSelect }: Props) {
   return (
     <div className="con-area">
-      {items.map((item: number) => (
+      {items.map((item) => (
         <ControlItem key={item} item={item} onItemSelect={onItemSelect} />
       ))}
     </div>

@@ -19,14 +19,8 @@
 }
 
 .triangle-up-active {
-  width: 0;
-  height: 0;
-  border-left: 30px solid transparent;
-  border-right: 30px solid transparent;
-  border-bottom: 40px solid #5ac37e;
-  border-radius: 2px;
+  border-bottom: 40px solid#5ac37e;
   transform: scale(1);
-  transition: all ease 300ms;
 }
 
 .triangle-down {
@@ -40,15 +34,8 @@
 }
 
 .triangle-down-active {
-  width: 0;
-  height: 0;
-  border-left: 30px solid transparent;
-  border-right: 30px solid transparent;
   border-top: 40px solid#5ac37e;
-  animation-name: initial;
-  animation-duration: 0.5s;
   transform: scale(1);
-  transition: all ease 300ms;
 }
 
 .elv-item {

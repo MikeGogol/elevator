@@ -1,15 +1,25 @@
-import http, { hostAdress } from "./httpService";
+import api, { baseURL } from "./httpService";
 
-export function callElevatorToFloor(floor: number) {
-  return http.put(hostAdress + "/floor/" + floor);
+export async function callElevatorToFloor(floor: number) {
+  return api.put(`/floor/${floor}`);
 }
 
-export function getInitialState() {
-  return http.get(hostAdress + "/elevators");
+export async function getInitialState() {
+  const result = await api.get<Elv[]>("/elevators");
+  console.log(result);
+  return result;
 }
 
-export function getBuildingInfo() {
-  return http.get(hostAdress + "/building");
+export async function getFloorsNumber() {
+  const result = await api.get<{ floors: number }>("/building");
+  console.log(result);
+  return result;
 }
 
-export const source = new EventSource(hostAdress + "/stream");
+export const source = new EventSource(`${baseURL}/stream`);
+
+export type Elv = {
+  id: string;
+  floor: number;
+  state: string;
+};

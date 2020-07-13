@@ -12,6 +12,7 @@
     "@types/react-dom": "^16.9.8",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
+    "classnames": "^2.2.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-reveal": "^1.2.2",
@@ -38,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.10"
   }
 }
