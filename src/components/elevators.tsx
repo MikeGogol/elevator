@@ -8,9 +8,9 @@ import {
   Elv,
 } from "../services/elevatorService";
 
-import Elevator from "./elevator";
-import ControlPanel from "./controlPanel";
-import AppHeader from "./appHeader";
+import Elevator from "./Elevator";
+import ControlPanel from "./ControlPanel";
+import AppHeader from "./AppHeader";
 
 type State = {
   elevators: Array<Elv>;

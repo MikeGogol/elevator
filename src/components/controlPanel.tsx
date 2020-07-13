@@ -1,5 +1,5 @@
 import React from "react";
-import ControlItem from "./controlItem";
+import ControlItem from "./ControlItem";
 
 type Props = {
   items: Array<number>;

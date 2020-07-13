@@ -1,7 +1,7 @@
 import React from "react";
 
-import ArrowDown from "./arrowDown";
-import ArrowUp from "./arrowUp";
+import ArrowDown from "./ArrowDown";
+import ArrowUp from "./ArrowUp";
 import Pulse from "react-reveal/Pulse";
 
 type Props = {

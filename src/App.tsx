@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-import { Elevators } from "./components/elevators";
+import { Elevators } from "./components/Elevators";
 
 function App() {
   return (
