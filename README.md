@@ -24,7 +24,8 @@ The address of backend service should be placed as "host Adress" in httpService.
 
 ## Known issues
 
-On same browsers when elevator is called for the first time there could be a small delay with displaying a floor.
+- On same browsers when elevator is called for the first time there could be a small delay with displaying a floor.
+- One dependency (React-Reveal) throws error and warnings on application run 
 
 ## Learn More
 
